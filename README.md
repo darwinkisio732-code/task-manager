@@ -1,48 +1,24 @@
-```markdown
-# Task Manager
+# CLI Task Manager (C Language)
 
-A terminal-based task manager to track tasks by priority and status.
+A lightweight, robust command-line task management application written in C. It allows users to create, track, filter, complete, and delete tasks dynamically using structured data and clean terminal output.
 
-## Features
+## ✨ Features
 
-- Add multiple tasks at once
-- View all tasks with priority and status labels
-- View pending tasks only
-- Mark tasks as done
-- Delete tasks by title
-- Maximum 100 tasks
+- **Batch Task Creation:** Add multiple tasks with titles, priority levels (*High, Medium, Low*), and due dates.
+- **Formated Table Display:** View all recorded tasks aligned cleanly using formatted field width flags (`%-25s`).
+- **Filtered Views:** Instantly view pending tasks to track remaining work without clutter.
+- **Task Status Management:** Search tasks by title and mark them as completed (`Done`).
+- **Dynamic Deletion:** Search and delete specific tasks by shifting array elements cleanly in memory.
+- **Robust Input Handling:** Features a custom input flush mechanism (`clearBuffer`) and combined `fgets`/`strcspn` parsing to prevent string truncation and buffer pollution errors.
 
-## How to Compile and Run
+## 🧠 Data Structure
 
-```bash
-gcc task_manager.c -o task_manager
-./task_manager
-```
+Tasks are managed in memory using an array of structures:
 
-## Menu Options
-
-1. **ADD TASK** – Add one or more tasks
-2. **VIEW ALL** – Display all tasks
-3. **VIEW PENDING** – Show only pending tasks
-4. **MARK DONE** – Mark a task as completed by title
-5. **DELETE** – Delete a task by title
-6. **EXIT** – Close the program
-
-## Example
-
-```
-Title: Finish C pointers
-Priority: 1 (High)
-Due Date: 15/04/2026
-
-===============AVAILABLE TASKS===============
-Title                Priority   Status     Due Date
------------------------------------------------------
-Finish C pointers    High       Pending    15/04/2026
-```
-
-## Requirements
-
-- GCC compiler
-- Windows / Linux / macOS
-```
+```c
+struct Task {
+    char title[100];
+    int priority;    // 1: High, 2: Medium, 3: Low
+    int status;      // 0: Pending, 1: Done
+    char dueDate[12];
+};
